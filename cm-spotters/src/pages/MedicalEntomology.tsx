@@ -72,6 +72,20 @@ const MedicalEntomology: React.FC = () => {
       ]
     },
     {
+      title: 'Adult Aedes Female Mosquito',
+      image: '/MedicalEntomology/aedes.jpg',
+      identifyingFeatures: [
+        'Medium-sized, black mosquito with white spots (silver-white markings) on the body and legs — hence called the "tiger mosquito".',
+        'Rests parallel to the surface (body and proboscis in a straight line)',
+        'Short palpi in females (shorter than proboscis)'
+      ],
+      publicHealthImportance: [
+        'Principal vector of Dengue, Chikungunya, Zika virus, and Yellow Fever.',
+        'Day-biting mosquito — peaks early morning and late afternoon.',
+        'Control strategies include source reduction (removal of breeding sites), larviciding, covering water containers, and community participation.'
+      ]
+    },
+    {
       title: 'Hard Tick (Ixodes or Boophilus species)',
       image: '/MedicalEntomology/hardTick.jpg',
       identifyingFeatures: [
@@ -83,7 +97,7 @@ const MedicalEntomology: React.FC = () => {
         'Causes tick paralysis and allergic reactions.',
         'Controlled by acaricides and livestock management.'
       ]
-    }
+    },
   ];
 
   return (
