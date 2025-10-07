@@ -21,12 +21,12 @@ const EnvironmentHealth: React.FC = () => {
       title: 'Horrock\'s Apparatus',
       image: '/EnvironmentHealth/horrocks.jpg',
       identifyingFeatures: [
-        'Glass bottles, droppers, and standard alum solution used in sets.',
-        'Designed to test optimum alum dose for water purification.'
+        'Glass bottles and droppers used in sets.',
+        'Designed to test optimum bleaching powder dose for water purification.'
       ],
       publicHealthImportance: [
         'Ensures effective coagulation and sedimentation in water treatment.',
-        'Prevents wastage or inadequate use of alum.',
+        'Prevents wastage or inadequate use of bleaching powder.',
         'Helps maintain safe drinking water quality in community supplies.'
       ]
     },

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LeftNavigation from './LeftNavigation';
+import { Home, Menu } from 'lucide-react';
 
 interface PageLayoutProps {
   children: React.ReactNode;
@@ -44,6 +45,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
           left: 20,
           zIndex: 998,
           background: '#667eea',
+          color: '#ffffff',
           border: 'none',
           borderRadius: 8,
           padding: '12px 16px',
@@ -57,9 +59,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
         onMouseEnter={(e) => e.currentTarget.style.background = '#5568d3'}
         onMouseLeave={(e) => e.currentTarget.style.background = '#667eea'}
       >
-        <div style={{ width: 24, height: 3, background: '#ffffff', borderRadius: 2 }} />
-        <div style={{ width: 24, height: 3, background: '#ffffff', borderRadius: 2 }} />
-        <div style={{ width: 24, height: 3, background: '#ffffff', borderRadius: 2 }} />
+        <Menu size={20}/>
       </button>
 
       {/* Back to Home Button */}
@@ -73,18 +73,19 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
           background: '#667eea',
           border: 'none',
           borderRadius: 8,
-          padding: '12px 20px',
+          padding: '12px 16px',
           cursor: 'pointer',
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
           color: '#ffffff',
-          fontSize: 14,
-          fontWeight: 600,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           transition: 'background 0.2s'
         }}
         onMouseEnter={(e) => e.currentTarget.style.background = '#5568d3'}
         onMouseLeave={(e) => e.currentTarget.style.background = '#667eea'}
       >
-        ← Home
+        <Home size={20} />
       </button>
 
       {/* Main content area */}
