@@ -13,6 +13,7 @@ interface NutritionWidgetProps {
 
 const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
   const [selectedItem, setSelectedItem] = useState<NutritionItem | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
   const openModal = (item: NutritionItem) => {
     setSelectedItem(item);
@@ -20,6 +21,11 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
 
   const closeModal = () => {
     setSelectedItem(null);
+    setIsFullscreen(false);
+  };
+
+  const toggleFullscreen = () => {
+    setIsFullscreen(!isFullscreen);
   };
 
   return (
@@ -55,17 +61,18 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
             {/* Image */}
             <div style={{
               width: '100%',
-              height: 180,
+              paddingTop: '100%',
+              position: 'relative',
               background: '#f1f5f9',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
               overflow: 'hidden'
             }}>
               <img
                 src={item.image}
                 alt={item.title}
                 style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover'
@@ -84,7 +91,7 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
       </div>
 
       {/* Modal Overlay */}
-      {selectedItem && (
+      {selectedItem && !isFullscreen && (
         <div
           onClick={closeModal}
           style={{
@@ -108,12 +115,14 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
             style={{
               background: '#ffffff',
               borderRadius: 16,
-              maxWidth: 700,
+              maxWidth: 1000,
               width: '100%',
               maxHeight: '90vh',
               overflowY: 'auto',
               position: 'relative',
-              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+              display: 'flex',
+              flexDirection: 'row'
             }}
           >
             {/* Close Button */}
@@ -141,17 +150,18 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
               ×
             </button>
 
-            {/* Image */}
+            {/* Image - Left Side */}
             <div style={{
-              width: '100%',
-              height: 300,
+              flex: '0 0 40%',
+              minHeight: '100%',
               background: '#f1f5f9',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               overflow: 'hidden',
               borderTopLeftRadius: 16,
-              borderTopRightRadius: 16
+              borderBottomLeftRadius: 16,
+              position: 'relative'
             }}>
               <img
                 src={selectedItem.image}
@@ -159,13 +169,43 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
                 style={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'cover'
+                  objectFit: 'contain'
                 }}
               />
+              {/* Fullscreen Button */}
+              <button
+                onClick={toggleFullscreen}
+                style={{
+                  position: 'absolute',
+                  bottom: 16,
+                  right: 16,
+                  background: '#3b82f6',
+                  border: 'none',
+                  borderRadius: 8,
+                  padding: '8px 12px',
+                  color: '#ffffff',
+                  fontSize: 14,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontWeight: 600,
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                  transition: 'background 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#2563eb';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#3b82f6';
+                }}
+              >
+                ⛶
+              </button>
             </div>
 
-            {/* Content */}
-            <div style={{ padding: 32 }}>
+            {/* Content - Right Side */}
+            <div style={{ flex: '1', padding: 32, overflowY: 'auto' }}>
               <h2 style={{ marginTop: 0, color: '#1e293b', fontSize: 28, fontWeight: 700 }}>
                 {selectedItem.title}
               </h2>
@@ -195,6 +235,61 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Fullscreen Image Overlay */}
+      {selectedItem && isFullscreen && (
+        <div
+          onClick={toggleFullscreen}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.95)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 3000,
+            padding: 40
+          }}
+        >
+          <img
+            src={selectedItem.image}
+            alt={selectedItem.title}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxWidth: '100%',
+              maxHeight: '100%',
+              objectFit: 'contain'
+            }}
+          />
+          {/* Close Fullscreen Button */}
+          <button
+            onClick={toggleFullscreen}
+            style={{
+              position: 'absolute',
+              top: 20,
+              right: 20,
+              background: '#ef4444',
+              border: 'none',
+              borderRadius: '50%',
+              width: 48,
+              height: 48,
+              color: '#ffffff',
+              fontSize: 24,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontWeight: 'bold',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)'
+            }}
+          >
+            ×
+          </button>
         </div>
       )}
     </>
