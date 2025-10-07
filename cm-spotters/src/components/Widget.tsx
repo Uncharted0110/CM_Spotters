@@ -15,6 +15,17 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
   const [selectedItem, setSelectedItem] = useState<NutritionItem | null>(null);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [isLandscape, setIsLandscape] = useState<boolean>(window.innerWidth > window.innerHeight);
+
+  // Update layout on window resize
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsLandscape(window.innerWidth > window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const openModal = (item: NutritionItem) => {
     const index = items.findIndex(i => i.title === item.title);
@@ -174,7 +185,7 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
               position: 'relative',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
               display: 'flex',
-              flexDirection: 'row'
+              flexDirection: isLandscape ? 'row' : 'column'
             }}
           >
             {/* Close Button */}
@@ -202,17 +213,19 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
               ×
             </button>
 
-            {/* Image - Left Side */}
+            {/* Image - Top (portrait) or Left Side (landscape) */}
             <div style={{
-              flex: '0 0 40%',
-              minHeight: '100%',
+              flex: isLandscape ? '0 0 40%' : '0 0 auto',
+              minHeight: isLandscape ? '100%' : '300px',
+              maxHeight: isLandscape ? 'auto' : '400px',
               background: '#FCD8CD',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               overflow: 'visible',
               borderTopLeftRadius: 16,
-              borderBottomLeftRadius: 16,
+              borderTopRightRadius: isLandscape ? 0 : 16,
+              borderBottomLeftRadius: isLandscape ? 16 : 0,
               position: 'relative',
               padding: '20px'
             }}>
@@ -223,7 +236,7 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
                   width: '100%',
                   height: '100%',
                   objectFit: 'contain',
-                  marginLeft: '16px'
+                  marginLeft: isLandscape ? '16px' : '0'
                 }}
               />
               {/* Fullscreen Button */}
@@ -258,7 +271,7 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
               </button>
             </div>
 
-            {/* Content - Right Side */}
+            {/* Content - Bottom (portrait) or Right Side (landscape) */}
             <div style={{ flex: '1', padding: 32, overflowY: 'auto' }}>
               <h2 style={{ marginTop: 0, color: '#687FE5', fontSize: 28, fontWeight: 700 }}>
                 {selectedItem.title}
