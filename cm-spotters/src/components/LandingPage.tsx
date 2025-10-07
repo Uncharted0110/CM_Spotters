@@ -66,16 +66,16 @@ const LandingPage: React.FC = () => {
           marginBottom: 24
         }}
       />
-      <h1 style={{ fontSize: 48, marginBottom: 16, fontWeight: 700 }}>CM Spotters</h1>
+      <h1 style={{ fontSize: 48, marginBottom: 16, fontWeight: 700 }}>CM Companion</h1>
       <p style={{ fontSize: 20, marginBottom: 20, maxWidth: 700 }}>
-        Your comprehensive platform for Community Medicine topics, case studies, and learning resources.
+        Your comprehensive platform for Community Medicine spotters, case studies, and learning resources.
       </p>
 
       <p style={{ fontSize: 15, maxWidth: 700, fontStyle: 'italic' }}>
         by Dr Shubha Davalagi, Professor, Community Medicine, JJMMC
       </p>
       
-      <h2 style={{ fontSize: 24, marginBottom: 24, fontWeight: 600 }}>Select a Topic to Explore</h2>
+      <h2 style={{ fontSize: 24, marginBottom: 24, fontWeight: 600 }}>Select a Spotter to Learn</h2>
       
       <div style={{
         display: 'grid',
