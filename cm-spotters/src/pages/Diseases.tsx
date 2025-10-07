@@ -129,27 +129,27 @@ const Diseases: React.FC = () => {
   ];
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f9fafb' }}>
+    <div style={{ minHeight: '100vh', background: '#FCD8CD' }}>
       <div style={{ padding: '80px 24px 24px 24px' }}>
-        <h1 style={{ marginTop: 0, color: '#1e293b', fontSize: 32, textAlign: 'center' }}>
+        <h1 style={{ marginTop: 0, color: '#687FE5', fontSize: 32, textAlign: 'center' }}>
           Communicable and Non-Communicable Diseases
         </h1>
-        <p style={{ fontSize: 16, lineHeight: 1.6, color: '#475569', textAlign: 'center', maxWidth: 800, margin: '0 auto 32px' }}>
+        <p style={{ fontSize: 16, lineHeight: 1.6, color: '#687FE5', textAlign: 'center', maxWidth: 800, margin: '0 auto 32px' }}>
           Click on any item to learn more about its identifying features and public health importance.
         </p>
       </div>
 
       {/* Communicable Diseases Section */}
-      <div style={{ padding: '24px', background: '#fef3c7', marginBottom: 32 }}>
-        <h2 style={{ color: '#92400e', fontSize: 28, textAlign: 'center', marginTop: 0, marginBottom: 24 }}>
+      <div style={{ padding: '24px', background: '#FEEBF6', marginBottom: 32 }}>
+        <h2 style={{ color: '#687FE5', fontSize: 28, textAlign: 'center', marginTop: 0, marginBottom: 24 }}>
           Communicable Diseases
         </h2>
         <NutritionWidget items={communicableDiseaseItems} />
       </div>
 
       {/* Non-Communicable Diseases Section */}
-      <div style={{ padding: '24px', background: '#ddd6fe' }}>
-        <h2 style={{ color: '#5b21b6', fontSize: 28, textAlign: 'center', marginTop: 0, marginBottom: 24 }}>
+      <div style={{ padding: '24px', background: '#FEEBF6' }}>
+        <h2 style={{ color: '#687FE5', fontSize: 28, textAlign: 'center', marginTop: 0, marginBottom: 24 }}>
           Non-Communicable Diseases
         </h2>
         <NutritionWidget items={nonCommunicableDiseaseItems} />

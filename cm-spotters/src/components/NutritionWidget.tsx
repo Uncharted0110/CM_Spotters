@@ -14,8 +14,11 @@ interface NutritionWidgetProps {
 const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
   const [selectedItem, setSelectedItem] = useState<NutritionItem | null>(null);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const openModal = (item: NutritionItem) => {
+    const index = items.findIndex(i => i.title === item.title);
+    setCurrentIndex(index);
     setSelectedItem(item);
   };
 
@@ -26,6 +29,18 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
 
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
+  };
+
+  const goToNext = () => {
+    const nextIndex = (currentIndex + 1) % items.length;
+    setCurrentIndex(nextIndex);
+    setSelectedItem(items[nextIndex]);
+  };
+
+  const goToPrevious = () => {
+    const prevIndex = (currentIndex - 1 + items.length) % items.length;
+    setCurrentIndex(prevIndex);
+    setSelectedItem(items[prevIndex]);
   };
 
   return (
@@ -42,7 +57,7 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
             key={index}
             onClick={() => openModal(item)}
             style={{
-              background: '#ffffff',
+              background: '#f29174ff',
               borderRadius: 12,
               overflow: 'hidden',
               boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
@@ -82,7 +97,7 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
             
             {/* Title */}
             <div style={{ padding: 16 }}>
-              <h3 style={{ margin: 0, color: '#1e293b', fontSize: 18, fontWeight: 600 }}>
+              <h3 style={{ margin: 0, color: '#0732f3ff', fontSize: 18, fontWeight: 600 }}>
                 {item.title}
               </h3>
             </div>
@@ -109,11 +124,48 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
             overflowY: 'auto'
           }}
         >
+          {/* Left Arrow Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrevious();
+            }}
+            style={{
+              position: 'fixed',
+              left: 40,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: '#687FE5',
+              border: 'none',
+              borderRadius: '50%',
+              width: 48,
+              height: 48,
+              color: '#ffffff',
+              fontSize: 24,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontWeight: 'bold',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+              zIndex: 2001,
+              transition: 'background 0.2s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#5568CC';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#687FE5';
+            }}
+          >
+            ‹
+          </button>
+
           {/* Modal Content */}
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              background: '#ffffff',
+              background: '#FCD8CD',
               borderRadius: 16,
               maxWidth: 1000,
               width: '100%',
@@ -154,14 +206,15 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
             <div style={{
               flex: '0 0 40%',
               minHeight: '100%',
-              background: '#f1f5f9',
+              background: '#FCD8CD',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              overflow: 'hidden',
+              overflow: 'visible',
               borderTopLeftRadius: 16,
               borderBottomLeftRadius: 16,
-              position: 'relative'
+              position: 'relative',
+              padding: '20px'
             }}>
               <img
                 src={selectedItem.image}
@@ -169,7 +222,8 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
                 style={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'contain'
+                  objectFit: 'contain',
+                  marginLeft: '16px'
                 }}
               />
               {/* Fullscreen Button */}
@@ -206,16 +260,16 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
 
             {/* Content - Right Side */}
             <div style={{ flex: '1', padding: 32, overflowY: 'auto' }}>
-              <h2 style={{ marginTop: 0, color: '#1e293b', fontSize: 28, fontWeight: 700 }}>
+              <h2 style={{ marginTop: 0, color: '#687FE5', fontSize: 28, fontWeight: 700 }}>
                 {selectedItem.title}
               </h2>
 
               {/* Identifying Features */}
               <div style={{ marginTop: 24 }}>
-                <h3 style={{ color: '#667eea', fontSize: 20, fontWeight: 600, fontStyle: 'italic' }}>
+                <h3 style={{ color: '#687FE5', fontSize: 20, fontWeight: 600, fontStyle: 'italic' }}>
                   Identifying features:
                 </h3>
-                <ul style={{ lineHeight: 1.8, color: '#475569', marginTop: 12 }}>
+                <ul style={{ lineHeight: 1.8, color: '#687FE5', marginTop: 12 }}>
                   {selectedItem.identifyingFeatures.map((feature, idx) => (
                     <li key={idx}>{feature}</li>
                   ))}
@@ -224,10 +278,10 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
 
               {/* Public Health Importance */}
               <div style={{ marginTop: 24 }}>
-                <h3 style={{ color: '#667eea', fontSize: 20, fontWeight: 600, fontStyle: 'italic' }}>
+                <h3 style={{ color: '#687FE5', fontSize: 20, fontWeight: 600, fontStyle: 'italic' }}>
                   Public health importance:
                 </h3>
-                <ul style={{ lineHeight: 1.8, color: '#475569', marginTop: 12 }}>
+                <ul style={{ lineHeight: 1.8, color: '#687FE5', marginTop: 12 }}>
                   {selectedItem.publicHealthImportance.map((point, idx) => (
                     <li key={idx}>{point}</li>
                   ))}
@@ -235,6 +289,43 @@ const NutritionWidget: React.FC<NutritionWidgetProps> = ({ items }) => {
               </div>
             </div>
           </div>
+
+          {/* Right Arrow Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
+            style={{
+              position: 'fixed',
+              right: 40,
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: '#687FE5',
+              border: 'none',
+              borderRadius: '50%',
+              width: 48,
+              height: 48,
+              color: '#ffffff',
+              fontSize: 24,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontWeight: 'bold',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+              zIndex: 2001,
+              transition: 'background 0.2s'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#5568CC';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#687FE5';
+            }}
+          >
+            ›
+          </button>
         </div>
       )}
 
