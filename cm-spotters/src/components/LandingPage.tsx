@@ -45,6 +45,15 @@ const LandingPage: React.FC = () => {
       padding: '40px 20px',
       overflowY: 'auto'
     }}>
+      <img 
+        src="/logo.jpeg" 
+        alt="CM Spotters Logo" 
+        style={{
+          width: 250,
+          height: 250,
+          marginBottom: 24
+        }}
+      />
       <h1 style={{ fontSize: 48, marginBottom: 16, fontWeight: 700 }}>CM Spotters</h1>
       <p style={{ fontSize: 20, marginBottom: 32, maxWidth: 700 }}>
         Your comprehensive platform for Community Medicine topics, case studies, and learning resources.
@@ -54,7 +63,7 @@ const LandingPage: React.FC = () => {
       
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
         gap: 16,
         maxWidth: 1200,
         width: '100%',

@@ -1,5 +1,5 @@
 import React from 'react';
-import NutritionWidget from '../components/NutritionWidget';
+import NutritionWidget from '../components/Widget';
 
 const Nutrition: React.FC = () => {
   const nutritionItems = [
@@ -294,13 +294,10 @@ const Nutrition: React.FC = () => {
 
   return (
     <div style={{ minHeight: '100vh', background: '#FCD8CD' }}>
-      <div style={{ padding: '80px 24px 24px 24px' }}>
-        <h1 style={{ marginTop: 0, color: '#687FE5', fontSize: 32, textAlign: 'center' }}>
+      <div style={{ padding: '40px 24px 24px 24px' }}>
+        <h1 style={{ marginTop: 0, color: '#687FE5', fontSize: 38, textAlign: 'center' }}>
           Nutrition
         </h1>
-        <p style={{ fontSize: 16, lineHeight: 1.6, color: '#687FE5', textAlign: 'center', maxWidth: 800, margin: '0 auto 32px' }}>
-          Click on any item to learn more about its identifying features and public health importance.
-        </p>
       </div>
       
       <NutritionWidget items={nutritionItems} />

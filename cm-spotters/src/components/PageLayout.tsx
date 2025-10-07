@@ -89,6 +89,23 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
 
       {/* Main content area */}
       <main style={{ minHeight: '100vh', overflowY: 'auto' }}>
+        {/* Logo at top center */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          paddingTop: 10,
+          background: '#FCD8CD'
+        }}>
+          <img 
+            src="/logo.jpeg" 
+            alt="CM Spotters Logo" 
+            style={{
+              width: 150,
+              height: 150,
+            }}
+          
+          />
+        </div>
         {children}
       </main>
     </div>
