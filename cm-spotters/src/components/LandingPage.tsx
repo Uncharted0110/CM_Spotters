@@ -61,12 +61,11 @@ const LandingPage: React.FC = () => {
         src="/logo.jpeg" 
         alt="CM Spotters Logo" 
         style={{
-          width: 250,
-          height: 250,
-          marginBottom: 24
+          width: 300,
+          height: 300,
         }}
       />
-      <h1 style={{ fontSize: 48, marginBottom: 16, fontWeight: 700 }}>CM Companion</h1>
+      <h1 style={{ fontSize: 48, marginTop: 0, marginBottom: 16, fontWeight: 700 }}>CM Companion</h1>
       <p style={{ fontSize: 20, marginBottom: 20, maxWidth: 700 }}>
         Your comprehensive platform for Community Medicine spotters, case studies, and learning resources.
       </p>

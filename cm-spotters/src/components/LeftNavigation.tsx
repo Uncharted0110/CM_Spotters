@@ -81,7 +81,7 @@ const LeftNavigation: React.FC<LeftNavigationProps> = ({ isOpen, onClose }) => {
           paddingBottom: 16,
           borderBottom: '2px solid rgba(104, 127, 229, 0.2)'
         }}>
-          <div style={{ fontWeight: 700, fontSize: 22, color: '#687FE5' }}>CM Spotters</div>
+          <div style={{ fontWeight: 700, fontSize: 22, color: '#687FE5' }}>CM Companion</div>
           <button
             onClick={onClose}
             style={{
