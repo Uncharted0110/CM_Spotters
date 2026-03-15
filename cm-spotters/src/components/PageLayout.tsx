@@ -62,6 +62,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
         <Menu size={20}/>
       </button>
 
+
       {/* Back to Home Button */}
       <button
         onClick={handleBackToHome}
@@ -82,8 +83,8 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
           justifyContent: 'center',
           transition: 'background 0.2s'
         }}
-        onMouseEnter={(e) => e.currentTarget.style.background = '#5568d3'}
-        onMouseLeave={(e) => e.currentTarget.style.background = '#667eea'}
+        onMouseEnter={e => e.currentTarget.style.background = '#5568d3'}
+        onMouseLeave={e => e.currentTarget.style.background = '#667eea'}
       >
         <Home size={20} />
       </button>

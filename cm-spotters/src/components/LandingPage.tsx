@@ -57,6 +57,32 @@ const LandingPage: React.FC = () => {
       padding: '40px 20px',
       overflowY: 'auto'
     }}>
+      {/* Order Book Button at top right */}
+      <button
+        onClick={() => navigate('/order-book')}
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 998,
+          background: '#ff9800',
+          border: 'none',
+          borderRadius: 8,
+          padding: '12px 18px',
+          cursor: 'pointer',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+          color: '#fff',
+          fontWeight: 600,
+          fontSize: 16,
+          transition: 'background 0.2s',
+          letterSpacing: 1
+        }}
+        onMouseEnter={e => e.currentTarget.style.background = '#e68900'}
+        onMouseLeave={e => e.currentTarget.style.background = '#ff9800'}
+      >
+        Order Book
+      </button>
+
       <img 
         src="/logo.jpeg" 
         alt="CM Spotters Logo" 

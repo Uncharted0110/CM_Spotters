@@ -13,6 +13,8 @@ import MedicalEntomology from './pages/MedicalEntomology';
 import Insecticides from './pages/Insecticides';
 import BiomedicalWaste from './pages/BiomedicalWaste';
 
+import BookOrder from './pages/BookOrder';
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +30,7 @@ function App() {
         <Route path="/entomology" element={<PageLayout><MedicalEntomology /></PageLayout>} />
         <Route path="/insecticides" element={<PageLayout><Insecticides /></PageLayout>} />
         <Route path="/biomedical-waste" element={<PageLayout><BiomedicalWaste /></PageLayout>} />
+        <Route path="/order-book" element={<PageLayout><BookOrder /></PageLayout>} />
       </Routes>
     </BrowserRouter>
   );
