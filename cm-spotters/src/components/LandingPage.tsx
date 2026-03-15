@@ -57,7 +57,7 @@ const LandingPage: React.FC = () => {
       padding: '40px 20px',
       overflowY: 'auto'
     }}>
-      {/* Order Book Button at top right */}
+      {/* Order Book Button at top right with cover image */}
       <button
         onClick={() => navigate('/order-book')}
         style={{
@@ -73,14 +73,23 @@ const LandingPage: React.FC = () => {
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
           color: '#fff',
           fontWeight: 600,
-          fontSize: 16,
           transition: 'background 0.2s',
-          letterSpacing: 1
+          letterSpacing: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 6,
+            width: 130,
         }}
         onMouseEnter={e => e.currentTarget.style.background = '#e68900'}
         onMouseLeave={e => e.currentTarget.style.background = '#ff9800'}
       >
-        Order Book
+          <img
+            src={"/book/latest-cover/71cqTZLMBFL._SL1500_.jpg"}
+            alt="Latest Book Cover"
+            style={{ width: 120, height: 155, objectFit: 'cover', borderRadius: 6, boxShadow: '0 2px 10px rgba(0,0,0,0.16)' }}
+          />
+          <span style={{ fontSize: 15, fontWeight: 600, marginTop: 4, lineHeight: 1.1 }}>Order Book</span>
       </button>
 
       <img 
